@@ -1,12 +1,16 @@
 import { Todo } from "domains/todoEntity";
+import { DBRepository } from "interfaceAdapters/dbRepository";
 import { TodoUsecase } from "./todoUsecase";
 
 export class TodoInteracter implements TodoUsecase{
-  public testFunc(data: unknown) {
-    console.log("test", data)
+  private dbRepository: DBRepository
+
+  constructor(dbRepository: DBRepository) {
+      this.dbRepository = dbRepository;
   }
 
   public createTodo(todo: Todo){
-    console.log(todo.id)
+    console.log("interacter", todo.id)
+    console.log(this.dbRepository.createTodo(todo))
   };
 }

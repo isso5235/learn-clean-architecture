@@ -1,10 +1,11 @@
 import { TodoInteracter } from "applications/todoInteracter";
 import { TodoUsecase } from "applications/todoUsecase";
 import { Todo } from "domains/todoEntity";
+import { DBInfrastructure } from "interfaceAdapters/dbInfrastructure";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export function TodoUi() {
-  const todo: TodoUsecase = new TodoInteracter()
+  const todo: TodoUsecase = new TodoInteracter(new DBInfrastructure())
 
   const {
     register,
@@ -14,14 +15,13 @@ export function TodoUi() {
     mode: "onSubmit",
     reValidateMode: "onChange",
 });
-  const onSubmit: SubmitHandler<Todo> = (data: Todo) => todo.createTodo(data);
+  const onSubmit: SubmitHandler<Todo> = (data) => todo.createTodo(data);
 
   return (
     <>
       <h1>Todo Management App</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        {/* <input type="hidden" value="34657"{...register("id")} /> */}
         <div>
           <p>Title</p>
           <input {...register("title", { required: true })} />
