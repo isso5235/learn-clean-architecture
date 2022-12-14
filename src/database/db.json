@@ -1,0 +1,18 @@
+{
+  "todoList": [
+    {
+      "id": "abced",
+      "title": "サンプル１",
+      "content": "サンプルサンプル",
+      "isDone": false,
+      "createdDate": "2022-12-14 22:14"
+    },
+    {
+      "id": "abced2",
+      "title": "サンプル2",
+      "content": "サンプルサンプル2",
+      "isDone": false,
+      "createdDate": "2022-12-14 22:15"
+    }
+  ]
+}

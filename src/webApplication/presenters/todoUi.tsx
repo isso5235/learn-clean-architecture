@@ -5,7 +5,7 @@ import { DBInfrastructure } from "interfaceAdapters/dbInfrastructure";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export function TodoUi() {
-  const todo: TodoUsecase = new TodoInteracter(new DBInfrastructure())
+  const todo: TodoUsecase = new TodoInteracter(new DBInfrastructure());
 
   const {
     register,
@@ -14,8 +14,9 @@ export function TodoUi() {
   } = useForm<Todo>({
     mode: "onSubmit",
     reValidateMode: "onChange",
-});
+  });
   const onSubmit: SubmitHandler<Todo> = (data) => todo.createTodo(data);
+  const getTodoList = () => todo.readTodoList();
 
   return (
     <>
@@ -34,6 +35,7 @@ export function TodoUi() {
         <input type="hidden" value="true" {...register("isDone")} />
         <button type="submit">create</button>
       </form>
+      <button onClick={getTodoList}>GET</button>
     </>
   );
 }
