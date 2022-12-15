@@ -1,24 +1,18 @@
-import { Todo } from "domains/todoEntity";
+import { ServerResponse } from "applications/serverResponse";
+import axios from "axios";
 import { DBRepository } from "./dbRepository";
-import axios from 'axios';
-
-type Response = {
-    id: string;
-    title: string;
-    content: string;
-    isDone: boolean;
-    createdDate?: string;
-  };
 
 export class DBInfrastructure implements DBRepository {
-  createTodo(todo: Todo): string {
-    console.log("infra", todo);
-    return "ok";
+  async createTodo(todo: ServerResponse) {
+    await axios.post("http://localhost:3333/todoList", todo);
+    console.log("new todo added");
   }
 
   async readTodoList() {
-    const response = await axios.get<Response>('http://localhost:3333/todoList');
-    console.log(response);
+    const response = await axios.get<ServerResponse[]>(
+      "http://localhost:3333/todoList"
+    );
+
     return response.data;
   }
 }

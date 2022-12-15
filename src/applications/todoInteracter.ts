@@ -10,11 +10,28 @@ export class TodoInteracter implements TodoUsecase {
   }
 
   public createTodo(todo: Todo) {
-    console.log("interacter", todo.id);
-    console.log(this.dbRepository.createTodo(todo));
+    const data = {
+      id: todo.id,
+      title: todo.title,
+      content: todo.content,
+      isDone: todo.isDone,
+    };
+    this.dbRepository.createTodo(data);
   }
 
-  public readTodoList() {
-    this.dbRepository.readTodoList();
+  public async readTodoList() {
+    const serverResponse = await this.dbRepository.readTodoList();
+
+    const todoList: Todo[] = serverResponse.map((v) => {
+      return {
+        id: v.id,
+        title: v.title,
+        content: v.content,
+        isDone: v.isDone,
+        createdDate: new Date(),
+      };
+    });
+
+    return todoList;
   }
 }
