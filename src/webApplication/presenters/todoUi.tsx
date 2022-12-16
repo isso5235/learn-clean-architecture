@@ -8,7 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 export function TodoUi() {
   const todoUsecase: TodoUsecase = new TodoInteracter(new DBInfrastructure());
-  const [todoList, setTodoList] = useState<Todo[]>();
+  const [todoList, setTodoList] = useState<Todo[]>([]);
 
   const {
     register,
@@ -17,7 +17,10 @@ export function TodoUi() {
   } = useForm<Todo>({
     mode: "onSubmit",
   });
-  const onSubmit: SubmitHandler<Todo> = (data) => todoUsecase.createTodo(data);
+  const onSubmit: SubmitHandler<Todo> = (data) => {
+    todoUsecase.createTodo(data);
+    setTodoList([...todoList, data]);
+  };
 
   useEffect(() => {
     todoUsecase

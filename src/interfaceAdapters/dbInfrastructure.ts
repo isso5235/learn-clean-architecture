@@ -4,8 +4,9 @@ import { DBRepository } from "./dbRepository";
 
 export class DBInfrastructure implements DBRepository {
   async createTodo(todo: ServerResponse) {
-    await axios.post("http://localhost:3333/todoList", todo);
-    console.log("new todo added");
+    await axios.post("http://localhost:3333/todoList", todo, {
+      headers: { "Content-type": "text/plain" },
+    });
   }
 
   async readTodoList() {
