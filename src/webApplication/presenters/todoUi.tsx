@@ -51,15 +51,17 @@ export function TodoUi() {
         <button type="submit">create</button>
       </form>
       <h2>See Todo</h2>
-      {todoList &&
-        todoList.map((v) => {
-          return (
-            <div key={v.id}>
-              <label>title: {v.title} </label>
-              <label>content: {v.content}</label>
-            </div>
-          );
-        })}
+      <div data-testid="todo-list">
+        {todoList &&
+          todoList.map((v) => {
+            return (
+              <div key={v.id}>
+                <label>title: {v.title} </label>
+                <label>content: {v.content}</label>
+              </div>
+            );
+          })}
+      </div>
     </>
   );
 }
