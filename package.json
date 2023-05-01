@@ -49,5 +49,10 @@
     "eslint-plugin-import": "^2.26.0",
     "json-server": "^0.17.1",
     "prettier": "^2.8.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }

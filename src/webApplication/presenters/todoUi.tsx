@@ -37,7 +37,7 @@ export function TodoUi() {
     <>
       <h1>Todo Management App</h1>
       <h2>Create Todo</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} data-testid="todo-form">
         <div>
           <p>Title</p>
           <input {...register("title", { required: true })} />
